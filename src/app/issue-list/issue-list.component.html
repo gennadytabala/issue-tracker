@@ -1,7 +1,9 @@
-<clr-datagrid>
-    <clr-dg-column [clrDgField]="'issueNo'" [clrDgColType]="'number'">Issue No</clr-dg-column>
-    <clr-dg-column [clrDgField]="'type'">Type</clr-dg-column>
-    <clr-dg-column [clrDgField]="'title'">Title</clr-dg-column>
+<ng-container *ngIf="showReportIssue === false">
+    <button class="btn btn-primary" (click)="showReportIssue = true">Add new issue</button>
+    <clr-datagrid>
+        <clr-dg-column [clrDgField]="'issueNo'" [clrDgColType]="'number'">Issue No</clr-dg-column>
+        <clr-dg-column [clrDgField]="'type'">Type</clr-dg-column>
+        <clr-dg-column [clrDgField]="'title'">Title</clr-dg-column>
         <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
         <clr-dg-column [clrDgField]="'priority'">Priority</clr-dg-column>
         <clr-dg-row *clrDgItems="let issue of issues">
@@ -14,4 +16,6 @@
             </clr-dg-cell>
         </clr-dg-row>
         <clr-dg-footer>{{issues.length}} issues</clr-dg-footer>
-</clr-datagrid>
+    </clr-datagrid>
+</ng-container>
+<app-issue-report *ngIf="showReportIssue == true" (formClose)="onCloseReport()"></app-issue-report>

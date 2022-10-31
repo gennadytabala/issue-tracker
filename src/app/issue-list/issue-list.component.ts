@@ -11,6 +11,7 @@ export class IssueListComponent implements OnInit {
   
   issues: Issue[] = [];
   showReportIssue = false;
+  selectedIssue: Issue | null = null;
 
   constructor(private issuesSerice: IssuesService) { }
 
@@ -27,4 +28,11 @@ export class IssueListComponent implements OnInit {
     this.getIssues();
   }
 
+  onConfirm(confirmed: boolean) {
+    if (confirmed && this.selectedIssue) {
+      this.issuesSerice.completeIssue(this.selectedIssue);
+      this.getIssues();
+    }
+    this.selectedIssue = null;
+  }
 }

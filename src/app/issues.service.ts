@@ -21,13 +21,17 @@ export class IssuesService {
     this.issues.push(issue);
   }
 
+  saveIssue(issue: Issue) {
+    const index = this.issues.findIndex(i => i.issueNo === issue.issueNo);
+    this.issues[index] = issue;
+  }
+
   completeIssue(issue: Issue) {
     const selectedIssue: Issue = {
       ...issue,
       completed: new Date()
     };
-    const index = this.issues.findIndex(i => i === 
-      issue);
+    const index = this.issues.findIndex(i => i === issue);
     this.issues[index] = selectedIssue;
   }
 
